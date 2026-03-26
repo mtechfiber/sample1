@@ -132,15 +132,17 @@ h2 {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.85);
+
+  /* OLD */
+  /* background: rgba(0,0,0,0.85); */
+
+  /* NEW (transparent glass) */
+  background: rgba(0, 0, 0, 0.2);  /* mas light */
+  backdrop-filter: blur(6px);     /* glass effect */
+
   justify-content: center;
   align-items: center;
   animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .modal-content {
@@ -256,7 +258,7 @@ h2 {
 
   <div class="contact-btn" onclick="openContact()">💬 Contact Support</div>
 
-  <div class="footer">© 2026 (Brand Name) | Secure Access Portal</div>
+  <div class="footer">© 2026 ###CompanyName | Secure Access Portal</div>
 </div>
 
 <!-- QR MODAL -->
@@ -265,15 +267,15 @@ h2 {
     <span class="close-btn" onclick="closeAll()">✖</span>
     <h3 id="qrTitle">Scan to Pay</h3>
     <img id="qrImage">
-    <div>Juan Dela Cruz•</div>
-    <div class="number-box" id="payNumber">0912-345-6789</div>
-    <button class="copy-btn" onclick="copyQRNumber(this)">COPY NUMBER</button>
+<div id="payName">XXXXXXXXXXXXX</div>
+<div class="number-box" id="payNumber">XXXXXXXXXXXXX</div>
+    <button class="copy-btn" onclick="copyQRNumber(this)">XXXXXXXXXXXXX</button>
 
     <div class="payment-note">
       Once the payment has been sent, kindly provide the account name and 
       reference number through Messenger or SMS.
-      <br><br>Facebook: Juan Dela Cruz
-      <br>Phone: 0912-345-6789
+      <br><br>Facebook: ###Facebook Name
+      <br>Phone: ###Phone Number
     </div>
   </div>
 </div>
@@ -284,7 +286,7 @@ h2 {
     <span class="close-btn" onclick="closeAll()">✖</span>
     <h3>Contact Support</h3>
 
-    <a href="tel:+639123456789" class="option-btn call-btn">
+    <a href="tel:+63###Call Number" class="option-btn call-btn">
       📞 Call Now
     </a>
 
@@ -305,22 +307,29 @@ function openQR(type) {
   const modal = document.getElementById("qrModal");
   const qrImage = document.getElementById("qrImage");
   const qrTitle = document.getElementById("qrTitle");
+  const payNumber = document.getElementById("payNumber");
+  const payName = document.getElementById("payName");
 
   if (type === "gcash") {
     qrImage.src = "`gcash.png";
     qrTitle.innerText = "Scan to Pay (GCash)";
+    payName.innerText = "###Gcash Name";
+    payNumber.innerText = "###Gcash Number";
   }
 
   if (type === "maya") {
     qrImage.src = "`maya.png";
     qrTitle.innerText = "Scan to Pay (Maya)";
+    payName.innerText = "###Maya Name";
+    payNumber.innerText = "###Maya Number";
   }
 
-   if (type === "bpi") {
+  if (type === "bpi") {
     qrImage.src = "`bpi.png";
     qrTitle.innerText = "Bank Transfer (BPI)";
+    payName.innerText = "###BPI Name";
+    payNumber.innerText = "###BPI Number";
   }
-
 
   modal.style.display = "flex";
 }
@@ -367,7 +376,7 @@ function copyQRNumber(button) {
 }
 
 function copyContactNumber(button) {
-  const number = "09123456789";
+  const number = "###Copy Number";
 
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(number);
@@ -388,7 +397,7 @@ music.play();
 </script>
 
 <audio id="bgMusic" autoplay loop>
-<source src="music.mp3" type="audio/mpeg">
+<source src="Audio2.mp3" type="audio/mpeg">
 </audio>
 
 
